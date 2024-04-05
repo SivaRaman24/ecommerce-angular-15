@@ -1,0 +1,6 @@
+<div class="suggestions-container rounded bg-white position-absolute border" style="z-index: 100;">
+  <ul role="listbox" class="list-group" *ngIf="suggestions.length > 0">
+    <li class="list-group-item" role="presentation" *ngFor="let suggestion of suggestions;" (click)="onSelectItem(suggestion)">{{suggestion[displayKey]}}</li>
+  </ul>
+  <ul role="listbox" class="list-group p-4" *ngIf="suggestions.length===0">Sorry! No products found.</ul>
+</div>

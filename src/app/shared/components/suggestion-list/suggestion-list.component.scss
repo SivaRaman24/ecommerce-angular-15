@@ -1,0 +1,15 @@
+.suggestions-container {
+  width: 32%;
+
+  .list-group-item {
+    cursor: pointer;
+    border: none;
+    position: relative;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
+

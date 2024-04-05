@@ -1,1 +1,13 @@
-<p>order-history works!</p>
+<!-- <p>{{orders | json}}</p> -->
+<div class="mt-4 p-2 alert alert-warning">
+  <p class="mb-0">Note: Order history mock API always return the same data!</p>
+</div>
+<div class="order-history m-4">
+  <div class="row mb-3">
+    {{orders?.carts?.length}} order placed!
+  </div>
+  <div class="mb-4 mt-4" *ngFor="let order of orders.carts;">
+    <app-order-details [orderDetail]="order"></app-order-details>
+  </div>
+</div>
+

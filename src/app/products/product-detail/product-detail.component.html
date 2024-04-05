@@ -1,1 +1,82 @@
-<p>product-detail works!</p>
+<div class="row product-details py-5 px-2">
+  <div class="col-5">
+    <div class="product-main-thumbnail mb-2">
+      <img [src]="productDetail.thumbnail" class="img-fluid img-thumbnail"/>
+    </div>
+    <div class="product-other-thumbnails" *ngIf="productDetail.images.length > 2">
+      <div class="d-flex flex-row flex-nowrap justify-content-between">
+        <div *ngFor="let productImg of productDetail.images;let index;" class="mx-1 card-image-container">
+          <img [src]="productImg" class="img-fluid img-thumbnail card-img-custom"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 col-xl-6 col-7">
+    <div class="ps-lg-10 mt-6 mt-md-0">
+      <!-- content -->
+      <a [routerLink]="['/products']" [queryParams]="{c: productDetail.category}" class="mb-2 d-block text-capitalize text-decoration-none">{{productDetail.category}}</a>
+      <!-- heading -->
+      <h4 class="mb-1">{{productDetail.title}}</h4>
+      <p class="text-small">{{productDetail.description}}</p>
+      <div class="mb-4">
+        <!-- rating -->
+        <!-- rating -->
+        <small class="text-warning">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-half"></i>
+        </small>
+        <a href="#" class="ms-2 text-decoration-none">({{productDetail.stock}} reviews)</a>
+      </div>
+      <div class="fs-4">
+        <!-- price -->
+        <span class="fw-bold text-dark fs-2">{{productDetail.price | currency}}</span>&nbsp;
+        <span class="text-decoration-line-through text-muted fs-6">{{productDetail.price + 12 | currency}}</span>
+        <span><small class="fs-6 ms-2 text-danger fs-6">{{-productDetail.discountPercentage/100 | percent}}</small></span>
+      </div>
+      <!-- hr -->
+      <div class="mt-3 row justify-content-start g-2 align-items-center">
+        <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
+          <!-- button -->
+          <!-- btn -->
+          <button type="button" class="btn btn-primary" [disabled]="productDetail.stock <= 0" (click)="addToCart()">
+            <i class="bi bi-cart-plus"></i>
+            Add to cart
+          </button>
+        </div>
+      </div>
+      <!-- hr -->
+      <hr class="my-6">
+      <div>
+        <!-- table -->
+        <table class="table table-borderless mb-0">
+          <tbody>
+            <tr>
+              <td>Product Code:</td>
+              <td>FBB00255</td>
+            </tr>
+            <tr>
+              <td>Availability:</td>
+              <td>{{productDetail.stock > 0 ? 'In Stock': 'Not Available'}}</td>
+            </tr>
+            <tr>
+              <td>Brand:</td>
+              <td>{{productDetail.brand}}</td>
+            </tr>
+            <tr>
+              <td>Shipping:</td>
+              <td>
+                <small>
+                  01 day shipping.
+                  <span class="text-muted">( Free pickup today)</span>
+                </small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

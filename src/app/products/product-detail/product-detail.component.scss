@@ -1,0 +1,24 @@
+a {
+  color: #007185;
+
+  &:hover {
+    color: #f54900 !important;
+  }
+}
+
+.card-image-container {
+  &:hover {
+    border: #f54900;
+  }
+
+  .card-img-custom {
+    width: 100%;
+    height: 5vw;
+    object-fit: contain;
+  }
+
+  .img-thumbnail:hover {
+    border-color: #f54900;
+  }
+}
+

@@ -1,1 +1,30 @@
-<p>sign-in works!</p>
+<div class="form-container m-auto w-200 p-4">
+  <form #loginForm="ngForm" (ngSubmit)="signIn()">
+    <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+    <div class="alert alert-light">
+      Use the below credentials.
+      <p>UserName: <b>kminchelle</b>&nbsp; Password: <b>0lelplR</b></p>
+    </div>
+    <div class="mb-3">
+      <label for="userName" class="col-sm-2 col-form-label">UserName</label>
+      <input type="text" class="form-control" name="userName" id="userName" placeholder="kminchelle" [(ngModel)]="auth.username" #username="ngModel" required>
+      <div *ngIf="username?.invalid && (username.dirty || username.touched)">
+        <p class="text-danger small" *ngIf="username?.errors?.['required']">
+          Username is mandatory
+        </p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="0lelplR" [(ngModel)]="auth.password" #password="ngModel" required/>
+      <div *ngIf="password?.invalid && (password.touched || password.dirty)">
+        <p class="text-danger" *ngIf="password?.errors?.['required']">
+          Password is mandatory
+        </p>
+      </div>
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="submit" [disabled]="loginForm?.invalid">Submit</button>
+    </div>
+  </form>
+</div>

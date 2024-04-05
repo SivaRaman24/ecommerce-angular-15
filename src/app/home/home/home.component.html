@@ -1,1 +1,55 @@
-<p>home works!</p>
+<!-- Carousel section -->
+<section class="hero-slider mt-3">
+  <div class="container">
+    <ngb-carousel *ngIf="images">
+      <ng-template ngbSlide>
+        <div class="img-wrapper">
+          <img [src]="images[0]" alt="Online shopping Takeda" />
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="img-wrapper">
+          <img [src]="images[1]" alt="Online shopping Takeda" />
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="img-wrapper">
+          <img [src]="images[2]" alt="Online shopping Takeda" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+</section>
+
+<!-- Featured categories section -->
+<section class="featured-categories-section mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Featured Categories</h3>
+      </div>
+    </div>
+  </div>
+  <div class="featured-categories d-flex flex-row flex-wrap">
+    <div class="category-card mx-2 mb-4" *ngFor="let category of featuredCategories;trackBy trackByCategoryId;">
+      <app-category-card [name]="category.name" [title]="category.displayName" [thumbnail]="category.thumbnail"></app-category-card>
+    </div>
+  </div>
+</section>
+
+<!-- Featured products section -->
+<section class="featured-products-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Featured Products</h3>
+      </div>
+    </div>
+  </div>
+  <div class="featured-categories d-flex flex-row flex-wrap">
+    <div class="product-card mx-2 mb-lg-4" *ngFor="let product of featuredProducts;trackBy trackByProductId;">
+      <app-product-card [productDetail]="product" (addToCartEvent)="addToCart($event)"></app-product-card>
+    </div>
+  </div>
+</section>

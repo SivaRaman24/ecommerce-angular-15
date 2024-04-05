@@ -1,1 +1,10 @@
-<p>product-list works!</p>
+<div class=" p-4 products-container">
+  <div class="product-filters border mb-4 shadow-lg p-3">
+    <app-product-filters [selectedCategory]="selectedCatgory" [selectedSortOption]="selectedSortOption" (categoryFilterChangeEvent)="categoryFilterChangeEventHandler($event)" (sortByChangeEvent)="onSortByChangeEventHandler($event)"></app-product-filters>
+  </div>
+  <div class="product-list d-flex flex-row flex-wrap justify-content-center border shadow-lg p-4">
+    <div class="product item mx-2 mb-4" *ngFor="let product of (productList | sortLocal:sortBy?.key:sortBy?.orderBy);trackBy trackByProductId;">
+      <app-product-card [productDetail]="product" (addToCartEvent)="addToCart($event)"></app-product-card>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+// $primary: #f54900;
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #f54900;
+  --bs-btn-border-color: #f54900;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #fb5711;
+  --bs-btn-hover-border-color: #fb5711;
+  --bs-btn-focus-shadow-rgb: 47, 185, 47;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #fb5711;
+  --bs-btn-active-border-color: #fb5711;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #f54900;
+  --bs-btn-disabled-border-color: #f54900;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+a {
+  color: #007185;
+}
+
+.bg-danger {
+  background-color: #f54900 !important;
+  color: #fff;
+}
+
+a.text-inherit {
+  color: #0F1111 !important;
+
+  &:hover {
+    color: #f54900 !important;
+  }
+}
+
+.nav-link:focus,
+.nav-link:hover,
+.nav-link.active,
+.link-container:focus,
+.link-container:hover,
+.link-container.active {
+  color: #f54900 !important;
+}
+
+a.text-muted:hover {
+  color: rgba(33, 37, 41, 0.9) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #f54900 !important;
+  color: #fff;
+}
