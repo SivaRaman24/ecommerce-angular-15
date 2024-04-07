@@ -1,0 +1,19 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": [
+          "/as-split-area/",
+          "/as-split/",
+          "ngb-carousel"
+        ]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [true, {
+    	"ignorePseudoElements": ["ng-deep"]
+    }]
+  }
+}

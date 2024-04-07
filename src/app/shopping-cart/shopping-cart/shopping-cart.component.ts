@@ -7,16 +7,19 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.scss']
+  styleUrls: ['./shopping-cart.component.scss'],
 })
 export class ShoppingCartComponent implements OnInit {
-
   cartItems: CartItem[] = [];
   itemSubTotal: number;
-  serviceFee: number = 5;
+  serviceFee = 5;
   successMessage: string;
 
-  constructor(private router: Router, private authService: AuthService, private cartService: CartService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private cartService: CartService,
+  ) {}
 
   ngOnInit(): void {
     this.getCartItems();
@@ -24,11 +27,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getCartItems() {
-    this.cartService.getCartItems().subscribe(
-      (items) => {
-        this.cartItems = items;
-      }
-    );
+    this.cartService.getCartItems().subscribe((items) => {
+      this.cartItems = items;
+    });
   }
 
   getSubTotal() {
@@ -44,20 +45,19 @@ export class ShoppingCartComponent implements OnInit {
     this.router.navigate(['/orders']);
   }
 
-  checkoutCartItems(): any {
-    if(!this.authService.isAuthenticated()) {
+  checkoutCartItems(): void {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/auth/signin']);
-      return false;
+      return;
     }
 
-    this.cartService.checkoutCartItems().subscribe(
-      (res) => {
-        this.successMessage ='Your order has been placed! You will be redirected to order history page shortly!';
-        setTimeout(() => {
-          this.cartService.removeCartItems();
-          this.redirectToOrderHistory();
-        }, 5000);
-      }
-    )
+    this.cartService.checkoutCartItems().subscribe(() => {
+      this.successMessage =
+        'Your order has been placed! You will be redirected to order history page shortly!';
+      setTimeout(() => {
+        this.cartService.removeCartItems();
+        this.redirectToOrderHistory();
+      }, 5000);
+    });
   }
 }

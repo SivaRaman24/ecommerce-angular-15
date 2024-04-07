@@ -12,9 +12,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { ToastsComponent } from './toast/toast.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -22,12 +20,12 @@ import { ToastsComponent } from './toast/toast.component';
     AppRoutingModule,
     NgbModule,
     CoreModule,
-    ToastsComponent
+    ToastsComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -12,7 +12,7 @@ export class AuthService {
   AUTH_TOKEN_KEY = 'token';
   LOGGED_IN_USER_DETAIL_KEY = 'loggedInUserInfo';
 
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   userInfoSubject$ = new BehaviorSubject<UserInfo | null>(null);
 
   constructor(private httpClient: HttpClient) {}
@@ -25,13 +25,13 @@ export class AuthService {
     return localStorage.getItem(this.AUTH_TOKEN_KEY);
   }
 
-  setAuthUserDetails(userDetail: any) {
+  setAuthUserDetails(userDetail: string) {
     localStorage.setItem(this.LOGGED_IN_USER_DETAIL_KEY, userDetail);
   }
 
   getAuthUserDetails(): UserInfo | null {
     const userDetail = localStorage.getItem(this.LOGGED_IN_USER_DETAIL_KEY);
-    return (userDetail) ? JSON.parse(userDetail) : null;
+    return userDetail ? JSON.parse(userDetail) : null;
   }
 
   removeAuthUserDetails() {
@@ -46,7 +46,7 @@ export class AuthService {
       password,
     };
     return this.httpClient
-      .post<UserInfo>(AppConstants.apiBaseUrl+'auth/login', authDetails)
+      .post<UserInfo>(AppConstants.apiBaseUrl + 'auth/login', authDetails)
       .pipe(
         tap((data) => {
           this.isLoggedIn = true;
@@ -54,7 +54,7 @@ export class AuthService {
           this.setAuthUserDetails(JSON.stringify(data));
           this.userInfoSubject$.next(data);
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       );
   }
 
@@ -73,12 +73,12 @@ export class AuthService {
       // The response body may contain clues as to what went wrong.
       console.error(
         `Backend returned code ${error.status}, body was: `,
-        error.error
+        error.error,
       );
     }
     // Return an observable with a user-facing error message.
     return throwError(
-      () => new Error('Something bad happened; please try again later.')
+      () => new Error('Something bad happened; please try again later.'),
     );
   }
 

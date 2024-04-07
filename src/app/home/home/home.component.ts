@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Category } from '../../shared/model/category.interface';
 import { Product } from '../../shared/model/product.interface';
@@ -10,13 +10,13 @@ import { ToastService } from '../../toast/toast.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   images = [
     'assets/carousel/image_v1.jpg',
     'assets/carousel/image_v2.jpg',
-    'assets/carousel/image_v3.jpg'
+    'assets/carousel/image_v3.jpg',
   ];
   categories: Category[] = [];
   featuredCategories: Category[] = [];
@@ -26,7 +26,8 @@ export class HomeComponent {
     private toastsService: ToastService,
     private productService: ProductService,
     private cartService: CartService,
-    private categoryService: CategoryService) {}
+    private categoryService: CategoryService,
+  ) {}
 
   ngOnInit() {
     this.getCategories();
@@ -34,20 +35,16 @@ export class HomeComponent {
   }
 
   getCategories() {
-    this.categoryService.getCategories().subscribe(
-      (res) => {
-        this.categories = res;
-        this.featuredCategories = res.slice(0, 7);
-      }
-    )
+    this.categoryService.getCategories().subscribe((res) => {
+      this.categories = res;
+      this.featuredCategories = res.slice(0, 7);
+    });
   }
 
   getFeaturedProducts() {
-    this.productService.getFeaturedProducts().subscribe(
-      (res) => {
-        this.featuredProducts = res.products;
-      }
-    )
+    this.productService.getFeaturedProducts().subscribe((res) => {
+      this.featuredProducts = res.products;
+    });
   }
 
   trackByCategoryId(index: number, category: Category) {
@@ -60,7 +57,10 @@ export class HomeComponent {
 
   addToCart(product: Product) {
     this.cartService.addToCart({ productInfo: product, quantity: 1 });
-    this.toastsService.show('Item added to the cart!', { classname: 'text-light shadow-lg', styles: 'background-color: #f36218ed', delay: 1500 });
+    this.toastsService.show('Item added to the cart!', {
+      classname: 'text-light shadow-lg',
+      styles: 'background-color: #f36218ed',
+      delay: 1500,
+    });
   }
-
 }

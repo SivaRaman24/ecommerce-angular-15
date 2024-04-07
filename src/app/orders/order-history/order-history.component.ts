@@ -4,10 +4,9 @@ import { OrderService } from '../services/order.service';
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
-  styleUrls: ['./order-history.component.scss']
+  styleUrls: ['./order-history.component.scss'],
 })
 export class OrderHistoryComponent implements OnInit {
-
   orders: any = [];
 
   constructor(private orderService: OrderService) {}
@@ -17,10 +16,8 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   getOrderHistory() {
-    this.orderService.getOrderHistory().subscribe(
-      (res) => {
-        this.orders = res;
-      }
-    );
+    this.orderService.getOrderHistory().subscribe((res) => {
+      this.orders = res;
+    });
   }
 }

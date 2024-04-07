@@ -1,86 +1,173 @@
 <!-- navigation -->
 <header class="shadow-lg">
-	<div class="container-fluid">
-		<div class="row align-items-center pt-2 pb-2">
-			<div class="col-auto text-center text-md-start">
-				<a [routerLink]="['/']"><img src="https://assets-dam.takeda.com/image/upload/v1/legacy-dotcom/globalassets/corporate/takeda_logo" alt="eCommerce Website" class="logo"/></a>
-			</div>
+  <div class="container-fluid">
+    <div class="row align-items-center pt-2 pb-2">
+      <div class="col-auto text-center text-md-start">
+        <a
+          [routerLink]="['/']"
+          class="fs-2 text-decoration-none"
+          [style]="'color: #f54900'"
+        >
+          <i class="bi bi-cart-check-fill"></i> ZenCart
+        </a>
+        <!-- <a [routerLink]="['/']"><img src="https://assets-dam.takeda.com/image/upload/v1/legacy-dotcom/globalassets/corporate/takeda_logo" alt="eCommerce Website" class="logo"/></a> -->
+      </div>
 
-			<div class="col-4">
-				<form #searchProductForm="ngForm" (ngSubmit)="searchProducts(searchControl.value)">
-					<div class="input-group">
-						<input class="form-control" type="search" placeholder="Search for products" aria-label="Search for products" #searchControl (keyup)="searchProducts(searchControl.value)"/>
-						<button type="submit" class="btn btn-primary" id="button-addon2">Search</button>
-					</div>
-          <div class="product-suggestions" *ngIf="showSuggestions">
-            <app-suggestion-list [suggestions]="productSuggestions" [displayKey]="'title'" (onSelectEvent)="onSelectProductItem($event);searchControl.value='';"></app-suggestion-list>
+      <div class="col-4">
+        <form
+          #searchProductForm="ngForm"
+          (ngSubmit)="searchProducts(searchControl.value)"
+        >
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search for products"
+              aria-label="Search for products"
+              #searchControl
+              (keyup)="searchProducts(searchControl.value)"
+            />
+            <button type="submit" class="btn btn-primary" id="button_addon2">
+              Search
+            </button>
           </div>
-				</form>
-			</div>
-			<div class="col-6 d-none d-lg-block">
-				<div class="d-flex align-items-center justify-content-between ms-4">
-          <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'active'">Home</a>
+          <div class="product-suggestions" *ngIf="showSuggestions">
+            <app-suggestion-list
+              [suggestions]="productSuggestions"
+              [displayKey]="'title'"
+              (selectedEvent)="
+                onSelectProductItem($event); searchControl.value = ''
+              "
+            ></app-suggestion-list>
+          </div>
+        </form>
+      </div>
+      <div class="col-6 d-none d-lg-block">
+        <div class="d-flex align-items-center justify-content-between ms-4">
+          <a
+            class="nav-link"
+            [routerLink]="['/home']"
+            [routerLinkActive]="'active'"
+            >Home</a
+          >
           <div class="text-center">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Categories</a
+            >
             <ul class="dropdown-menu">
-              <li *ngFor="let category of categories;trackBy trackByCategoryId;">
-                <a class="dropdown-item" [routerLink]="['/products']" [queryParams]="{c: category.name}">{{category.displayName}}</a>
+              <li
+                *ngFor="let category of categories; trackBy: trackByCategoryId"
+              >
+                <a
+                  class="dropdown-item"
+                  [routerLink]="['/products']"
+                  [queryParams]="{ c: category.name }"
+                  >{{ category.displayName }}</a
+                >
               </li>
             </ul>
           </div>
-          <a class="nav-link text-decoration-none" [routerLink]="['/products']" [routerLinkActive]="'active'">Products</a>
-					<div class="ms-6 text-center" *ngIf="isUserAuthenticated">
-						<a [routerLink]="['/orders']" [routerLinkActive]="'active'" class="link-container text-reset text-decoration-none">
-							<div class="lh-1">
-								<div class="mb-2">
-									<i class="bi bi-archive fs-4"></i>
-								</div>
-								<p class="mb-0 d-none d-xl-block small">My Orders</p>
-							</div>
-						</a>
-					</div>
-					<div class="text-center">
-						<a [routerLink]="['/cart']" [routerLinkActive]="'active'" class="link-container text-reset text-decoration-none">
-							<div class="text-center link-container">
-								<div class="position-relative d-inline-block">
-									<i class="bi bi-cart2 fs-4"></i>
-                  <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger" style="top: 20%">{{cartItemsCount}}</span>
-								</div>
-								<p class="link-text mb-0 d-none d-xl-block small">Shopping Cart</p>
-							</div>
-						</a>
-					</div>
+          <a
+            class="nav-link text-decoration-none"
+            [routerLink]="['/products']"
+            [routerLinkActive]="'active'"
+            >Products</a
+          >
+          <div class="ms-6 text-center" *ngIf="isUserAuthenticated">
+            <a
+              [routerLink]="['/orders']"
+              [routerLinkActive]="'active'"
+              class="link-container text-reset text-decoration-none"
+            >
+              <div class="lh-1">
+                <div class="mb-2">
+                  <i class="bi bi-archive fs-4"></i>
+                </div>
+                <p class="mb-0 d-none d-xl-block small">My Orders</p>
+              </div>
+            </a>
+          </div>
           <div class="text-center">
-						<a [routerLink]="['auth', 'signin']" [routerLinkActive]="'active'" class="link-container text-reset text-decoration-none" role="button" *ngIf="!isUserAuthenticated">
-							<div class="lh-1">
-								<div class="mb-2">
-									<i class="bi bi-person-circle fs-4"></i>
-								</div>
-								<p class="mb-0 d-none d-xl-block small">SignIn</p>
-							</div>
-						</a>
-						<a class="text-reset text-decoration-none link-container" role="button" *ngIf="isUserAuthenticated">
-							<div class="lh-1">
-								<div class="mb-2">
-									<img [src]="userInfo?.image" class="rounded" alt="{{userInfo?.firstName}}" style="width: 2rem; height: 2rem; line-height: 2rem;">
-								</div>
-								<p class="mb-0 d-none d-xl-block small">{{userInfo?.firstName}}</p>
-							</div>
-						</a>
-					</div>
-          <div class="ms-6 text-center" *ngIf="isUserAuthenticated" style="cursor: pointer;">
-						<a class="text-reset text-decoration-none link-container" (click)="signOut()">
-							<div class="lh-1">
-								<div class="mb-2">
-									<i class="bi bi-box-arrow-left fs-4"></i>
-								</div>
-								<p class="mb-0 d-none d-xl-block small">Sign Out</p>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <a
+              [routerLink]="['/cart']"
+              [routerLinkActive]="'active'"
+              class="link-container text-reset text-decoration-none"
+            >
+              <div class="text-center link-container">
+                <div class="position-relative d-inline-block">
+                  <i class="bi bi-cart2 fs-4"></i>
+                  <span
+                    class="position-absolute start-100 translate-middle badge rounded-pill bg-danger"
+                    [style]="'top: 20%'"
+                    >{{ cartItemsCount }}</span
+                  >
+                </div>
+                <p class="link-text mb-0 d-none d-xl-block small">
+                  Shopping Cart
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="text-center">
+            <a
+              [routerLink]="['auth', 'signin']"
+              [routerLinkActive]="'active'"
+              class="link-container text-reset text-decoration-none"
+              role="button"
+              *ngIf="!isUserAuthenticated"
+            >
+              <div class="lh-1">
+                <div class="mb-2">
+                  <i class="bi bi-person-circle fs-4"></i>
+                </div>
+                <p class="mb-0 d-none d-xl-block small">SignIn</p>
+              </div>
+            </a>
+            <a
+              class="text-reset text-decoration-none link-container"
+              role="button"
+              *ngIf="isUserAuthenticated"
+            >
+              <div class="lh-1">
+                <div class="mb-2">
+                  <img
+                    [src]="userInfo?.image"
+                    class="rounded"
+                    alt="{{ userInfo?.firstName }}"
+                    [style]="'width: 2rem; height: 2rem; line-height: 2rem'"
+                  />
+                </div>
+                <p class="mb-0 d-none d-xl-block small">
+                  {{ userInfo?.firstName }}
+                </p>
+              </div>
+            </a>
+          </div>
+          <div
+            class="ms-6 text-center"
+            *ngIf="isUserAuthenticated"
+            [style]="'cursor: pointer'"
+          >
+            <a
+              class="text-reset text-decoration-none link-container"
+              (click)="signOut()"
+            >
+              <div class="lh-1">
+                <div class="mb-2">
+                  <i class="bi bi-box-arrow-left fs-4"></i>
+                </div>
+                <p class="mb-0 d-none d-xl-block small">Sign Out</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 <!-- <ngb-toast [autohide]="false"> I am a simple static toast. </ngb-toast> -->

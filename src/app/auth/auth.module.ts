@@ -6,14 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    SignInComponent,
-    SignUpComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    AuthRoutingModule
-  ],
+  declarations: [SignInComponent, SignUpComponent],
+  imports: [CommonModule, FormsModule, AuthRoutingModule],
 })
-export class AuthModule { }
+export class AuthModule {}

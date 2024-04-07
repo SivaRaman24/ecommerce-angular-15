@@ -1,12 +1,32 @@
 <div class="row justify-content-center">
   <div class="col-4">
     <div class="row">
-      <div class="col-5"><label for="categoryFilter" class="form-label">Filter By Categories</label></div>
+      <div class="col-5">
+        <label for="categoryFilter" class="form-label"
+          >Filter By Categories</label
+        >
+      </div>
       <div class="col-7">
-        <select class="form-select" aria-label="filter by categories" id="categoryFilter" (change)="onCategoryFilterChange($event)">
+        <select
+          class="form-select"
+          aria-label="filter by categories"
+          id="category_filter"
+          (change)="onCategoryFilterChange($event)"
+        >
           <option value="">All</option>
-          <ng-container *ngFor="let category of categories;trackBy trackByCategoryId; let index;">
-            <option [value]="category.name" [selected]="category.name === selectedCategory">{{category.displayName}}</option>
+          <ng-container
+            *ngFor="
+              let category of categories;
+              trackBy: trackByCategoryId;
+              let index
+            "
+          >
+            <option
+              [value]="category.name"
+              [selected]="category.name === selectedCategory"
+            >
+              {{ category.displayName }}
+            </option>
           </ng-container>
         </select>
       </div>
@@ -14,12 +34,24 @@
   </div>
   <div class="col-4">
     <div class="row">
-      <div class="col-3 justify-content-end"><label for="categoryFilter" class="form-label">Sort By</label></div>
+      <div class="col-3 justify-content-end">
+        <label for="sort_options" class="form-label">Sort By</label>
+      </div>
       <div class="col-9">
-        <select class="form-select" aria-label="filter by categories" id="categoryFilter" (change)="onSortByChange($event)">
+        <select
+          class="form-select"
+          aria-label="filter by categories"
+          id="sort_options"
+          (change)="onSortByChange($event)"
+        >
           <option value="">All</option>
-          <ng-container *ngFor="let option of sortByOptions; let index;">
-            <option [value]="option.value" [selected]="option.value === selectedSortOption">{{option.displayName}}</option>
+          <ng-container *ngFor="let option of sortByOptions; let index">
+            <option
+              [value]="option.value"
+              [selected]="option.value === selectedSortOption"
+            >
+              {{ option.displayName }}
+            </option>
           </ng-container>
         </select>
       </div>

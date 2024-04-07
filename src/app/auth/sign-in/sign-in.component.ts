@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
   auth = {
@@ -13,18 +13,21 @@ export class SignInComponent {
     password: '',
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
-  signIn(): any {
-    if (!this.auth.username || !this.auth.password) return false;
+  signIn(): void {
+    if (!this.auth.username || !this.auth.password) return;
 
     this.authService.signIn(this.auth.username, this.auth.password).subscribe({
-      next: (res) => {
+      next: () => {
         this.router.navigate(['/']);
       },
       error: (errRes) => {
         console.log(errRes);
-      }
+      },
     });
   }
 }

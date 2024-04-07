@@ -7,37 +7,44 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'orders',
-    loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule),
-    canActivate: [AuthGuardService]
+    loadChildren: () =>
+      import('./orders/orders.module').then((m) => m.OrdersModule),
+    canActivate: [AuthGuardService],
   },
   {
     path: 'products',
-    loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
   },
   {
     path: 'cart',
-    loadChildren: () => import('./shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule)
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule,
+      ),
   },
   {
     path: 'toast',
-    component: NgbdToastGlobal
-  }
+    component: NgbdToastGlobal,
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules})],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

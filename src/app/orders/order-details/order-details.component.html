@@ -1,41 +1,74 @@
 <div class="row order-detail p-4 border rounded-4 shadow-lg">
   <div class="row py-4">
-    <div class="col">Order #<span class="fw-bold">{{orderDetail.id}}</span></div>
     <div class="col">
-      <div>Total Products: <span class="fw-bold">{{orderDetail.totalProducts}}</span></div>
-      <div>Number of Items: <span class="fw-bold">{{orderDetail.totalQuantity}}</span></div>
+      Order #<span class="fw-bold">{{ orderDetail.id }}</span>
+    </div>
+    <div class="col">
+      <div>
+        Total Products:
+        <span class="fw-bold">{{ orderDetail.totalProducts }}</span>
+      </div>
+      <div>
+        Number of Items:
+        <span class="fw-bold">{{ orderDetail.totalQuantity }}</span>
+      </div>
     </div>
     <div class="col">
       <div class="row">Total Savings</div>
-      <div class="row fw-bold fs-2">{{orderDetail.discountedTotal | currency}}</div>
+      <div class="row fw-bold fs-2">
+        {{ orderDetail.discountedTotal | currency }}
+      </div>
     </div>
   </div>
   <div class="row">
     <ul class="list-group list-group-flush">
       <!-- list group -->
-      <li class="list-group-item py-3 ps-0 border-top border-bottom" *ngFor="let product of orderDetail.products;let index;">
+      <li
+        class="list-group-item py-3 ps-0 border-top border-bottom"
+        *ngFor="let product of orderDetail.products; let index"
+      >
         <!-- row -->
         <div class="row text-center align-items-center">
           <div class="col-6 col-md-6 col-lg-7">
             <div class="d-flex">
-              <img [src]="product.thumbnail" alt="Ecommerce" class="icon-shape icon-xxl" style="height:5rem; width:7rem; line-height:5rem;">
+              <img
+                [src]="product.thumbnail"
+                alt="Ecommerce"
+                class="icon-shape icon-xxl"
+                [style]="'height: 5rem; width: 7rem; line-height: 5rem'"
+              />
               <div class="ms-3 align-items-center">
                 <!-- title -->
-                <a [routerLink]="['/products', product.id]" class="text-inherit text-decoration-none fw-bold">
-                  <h6 class="mb-0 fs-5">{{product.title}}</h6>
+                <a
+                  [routerLink]="['/products', product.id]"
+                  class="text-inherit text-decoration-none fw-bold"
+                >
+                  <h6 class="mb-0 fs-5">{{ product.title }}</h6>
                 </a>
               </div>
             </div>
           </div>
           <!-- input group -->
           <div class="col-2 col-md-2 col-lg-2">
-            Quantity: <span class="fw-bold">{{product.quantity}}</span>
+            Quantity: <span class="fw-bold">{{ product.quantity }}</span>
           </div>
           <!-- price -->
-          <div class="col-4 text-lg-end text-start text-md-end col-md-4 col-lg-3">
-            <span class="text-dark fw-bold fs-4">{{product.discountedPrice | currency}}</span>&nbsp;
-            <span class="text-decoration-line-through text-muted">{{product.price | currency}}</span>&nbsp;
-            <span class="text-danger">({{product.discountPercentage/100 | percent}}&nbsp;offer)</span>
+          <div
+            class="col-4 text-lg-end text-start text-md-end col-md-4 col-lg-3"
+          >
+            <span class="text-dark fw-bold fs-4">{{
+              product.discountedPrice | currency
+            }}</span
+            >&nbsp;
+            <span class="text-decoration-line-through text-muted">{{
+              product.price | currency
+            }}</span
+            >&nbsp;
+            <span class="text-danger"
+              >({{
+                product.discountPercentage / 100 | percent
+              }}&nbsp;offer)</span
+            >
           </div>
         </div>
       </li>

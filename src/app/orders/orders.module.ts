@@ -7,13 +7,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @NgModule({
-  declarations: [
-    OrderHistoryComponent,
-    OrderDetailsComponent
-  ],
-  imports: [
-    CommonModule,
-    OrdersRoutingModule
-  ]
+  declarations: [OrderHistoryComponent, OrderDetailsComponent],
+  imports: [CommonModule, OrdersRoutingModule],
 })
-export class OrdersModule { }
+export class OrdersModule {}

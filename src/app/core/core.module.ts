@@ -8,19 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    RouterModule,
-  ],
-  exports: [
-    HeaderComponent,
-    FooterComponent
-  ]
+  declarations: [HeaderComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, SharedModule, RouterModule],
+  exports: [HeaderComponent, FooterComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

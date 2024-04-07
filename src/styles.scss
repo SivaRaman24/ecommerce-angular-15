@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-// $primary: #f54900;
 
 .btn-primary {
   --bs-btn-color: #fff;
@@ -12,7 +11,7 @@
   --bs-btn-active-color: #fff;
   --bs-btn-active-bg: #fb5711;
   --bs-btn-active-border-color: #fb5711;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0 0 0 12.5%);
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #f54900;
   --bs-btn-disabled-border-color: #f54900;
@@ -32,7 +31,7 @@ a {
 }
 
 a.text-inherit {
-  color: #0F1111 !important;
+  color: #0f1111 !important;
 
   &:hover {
     color: #f54900 !important;
@@ -49,7 +48,7 @@ a.text-inherit {
 }
 
 a.text-muted:hover {
-  color: rgba(33, 37, 41, 0.9) !important;
+  color: rgba(33 37 41 / 90%) !important;
 }
 
 .dropdown-item:hover,

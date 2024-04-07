@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AppConstants } from '../../core/constants/app-constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
   constructor(private httpClient: HttpClient) {}

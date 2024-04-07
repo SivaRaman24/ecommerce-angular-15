@@ -5,12 +5,12 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 const routes: Routes = [
   {
     path: '',
-    component: OrderHistoryComponent
-  }
+    component: OrderHistoryComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class OrdersRoutingModule {}

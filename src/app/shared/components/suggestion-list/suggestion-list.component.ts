@@ -1,17 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Product } from '../../model/product.interface';
 
 @Component({
   selector: 'app-suggestion-list',
   templateUrl: './suggestion-list.component.html',
-  styleUrls: ['./suggestion-list.component.scss']
+  styleUrls: ['./suggestion-list.component.scss'],
 })
 export class SuggestionListComponent {
-  @Input() suggestions: any = [];
+  @Input() suggestions: Product[] = [];
   @Input() displayKey!: string;
 
-  @Output() onSelectEvent = new EventEmitter<any>();
+  @Output() selectedEvent = new EventEmitter<Product>();
 
-  onSelectItem(selectedVal: any) {
-    this.onSelectEvent.emit(selectedVal);
+  onSelectItem(selectedVal: Product) {
+    this.selectedEvent.emit(selectedVal);
   }
 }

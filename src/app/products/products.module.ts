@@ -13,13 +13,8 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     ProductListComponent,
     ProductDetailComponent,
-    ProductFiltersComponent
+    ProductFiltersComponent,
   ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    SharedModule,
-    NgbToastModule
-  ],
+  imports: [CommonModule, ProductsRoutingModule, SharedModule, NgbToastModule],
 })
-export class ProductsModule { }
+export class ProductsModule {}

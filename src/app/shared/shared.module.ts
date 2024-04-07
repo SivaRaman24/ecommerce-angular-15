@@ -13,17 +13,14 @@ import { SuggestionListComponent } from './components/suggestion-list/suggestion
     SortLocalPipe,
     ProductCardComponent,
     CategoryCardComponent,
-    SuggestionListComponent
+    SuggestionListComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-  ],
+  imports: [CommonModule, RouterModule],
   exports: [
     SortLocalPipe,
     ProductCardComponent,
     CategoryCardComponent,
-    SuggestionListComponent
-  ]
+    SuggestionListComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -6,6 +6,6 @@ export const AppConstants = {
   appName: 'Takeda Pharmaceuticals',
   apiBaseUrl: 'https://dummyjson.com/',
   autoComplete: {
-    minLength: 2
-  }
-}
+    minLength: 2,
+  },
+};

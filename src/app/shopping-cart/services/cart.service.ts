@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CartCheckoutResponse, CartItem } from 'src/app/shared/model/cart.interface';
-import { BehaviorSubject, Observable, Subject, of, tap } from 'rxjs';
+import {
+  CartCheckoutResponse,
+  CartItem,
+} from 'src/app/shared/model/cart.interface';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { AppConstants } from '../../core/constants/app-constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
   cartItems: CartItem[] = [];
-  totalCartItems: number = 0;
+  totalCartItems = 0;
   totalCartItemUpdated$ = new BehaviorSubject<number>(0);
 
   constructor(private httpClient: HttpClient) {}
 
   getCartIndexByProductId(productId: number) {
-    return this.cartItems.findIndex(obj => obj.productInfo.id === productId);
+    return this.cartItems.findIndex((obj) => obj.productInfo.id === productId);
   }
 
   addToCart(cartItem: CartItem) {
     const cartItemIndex = this.getCartIndexByProductId(cartItem.productInfo.id);
-    if(cartItemIndex > -1) { // Checks if the product is already in the cart
-      this.cartItems[cartItemIndex]['quantity'] = this.cartItems[cartItemIndex]['quantity'] + cartItem.quantity; // increase the quantity alone
+    if (cartItemIndex > -1) {
+      // Checks if the product is already in the cart
+      this.cartItems[cartItemIndex]['quantity'] =
+        this.cartItems[cartItemIndex]['quantity'] + cartItem.quantity; // increase the quantity alone
     } else {
       this.cartItems.push(cartItem);
     }
@@ -51,9 +55,16 @@ export class CartService {
 
   getSubTotal() {
     const items = [...this.cartItems];
-    const sum = items.reduce((accumulator: any, cartItem: { productInfo: { price: any; }; quantity: number; }) => {
-      return accumulator = accumulator + (cartItem.quantity * cartItem.productInfo.price);
-    }, 0);
+    const sum = items.reduce(
+      (
+        accumulator: number,
+        cartItem: { productInfo: { price: number }; quantity: number },
+      ) => {
+        return (accumulator =
+          accumulator + cartItem.quantity * cartItem.productInfo.price);
+      },
+      0,
+    );
     return sum;
   }
 
@@ -62,21 +73,19 @@ export class CartService {
     const products = this.cartItems.map((item) => {
       return {
         id: item.productInfo.id,
-        quantity: item.quantity
+        quantity: item.quantity,
       };
     });
     const reqBody = {
       userId: 1,
-      products: products
+      products: products,
     };
 
-    return this.httpClient.post<CartCheckoutResponse>(apiUrl, reqBody,
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    );
+    return this.httpClient.post<CartCheckoutResponse>(apiUrl, reqBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   removeCartItems() {
