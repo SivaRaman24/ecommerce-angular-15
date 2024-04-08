@@ -1,5 +1,5 @@
 {
-  "plugins": [],  // npm modules to load
+  "plugins": [],
 
   "maxerr": false,
   "raw-ignore-regex": false,
@@ -46,12 +46,12 @@
   "class-no-dup": true,
   "class-style": "dash",
   "id-class-ignore-regex": false,
-  "img-req-alt": false, // using [alt] instead
-  "img-req-src": false, // using [src] instead
+  "img-req-alt": false,
+  "img-req-src": false,
   "html-valid-content-model": true,
   "head-valid-content-model": true,
   "href-style": false,
-  "link-req-noopener": false, // revert when https://github.com/htmllint/htmllint/issues/266 is closed
+  "link-req-noopener": false,
   "label-req-for": false,
   "line-end-style": false,
   "line-no-trailing-whitespace": true,
@@ -64,7 +64,7 @@
   "lang-style": "case",
   "fig-req-figcaption": false,
   "focusable-tabindex-style": false,
-  "input-radio-req-name": false,  // reactive forms would have `formControlName` property instead
+  "input-radio-req-name": false,
   "input-req-label": false,
   "table-req-caption": false,
   "table-req-header": false,
