@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './auth/auth-guard.service';
-import { NgbdToastGlobal } from './toast/toast-global.component';
+import { ToastGlobalComponent } from './toast/toast-global.component';
 
 const routes: Routes = [
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'toast',
-    component: NgbdToastGlobal,
+    component: ToastGlobalComponent,
   },
 ];
 

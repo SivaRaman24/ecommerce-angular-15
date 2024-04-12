@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Category } from '../../shared/model/category.interface';
 import { Product } from '../../shared/model/product.interface';
@@ -6,6 +6,7 @@ import { ProductService } from '../../products/services/product.service';
 import { CartService } from '../../shopping-cart/services/cart.service';
 import { CategoryService } from '../../core/services/category.service';
 import { ToastService } from '../../toast/toast.service';
+import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ import { ToastService } from '../../toast/toast.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('featureCategoriesSlide') featuredCategoryCarousel: NgbCarousel;
+
   images = [
     'assets/carousel/image_v1.jpg',
     'assets/carousel/image_v2.jpg',
@@ -20,7 +23,20 @@ export class HomeComponent implements OnInit {
   ];
   categories: Category[] = [];
   featuredCategories: Category[] = [];
+  categoryChunks: Array<Category[]> = [];
   featuredProducts: Product[] = [];
+
+  categoriesCarouselConfig = {
+    showNavigationArrows: false,
+    showNavigationIndicators: false,
+    interval: 100000,
+  };
+
+  cardPagination = {
+    from: 0,
+    to: 3,
+    defaultCount: 7,
+  };
 
   constructor(
     private toastsService: ToastService,
@@ -34,10 +50,30 @@ export class HomeComponent implements OnInit {
     this.getFeaturedProducts();
   }
 
+  goToPreviousSlide() {
+    this.featuredCategoryCarousel.prev();
+  }
+
+  goToNextSlide() {
+    this.featuredCategoryCarousel.next();
+  }
+
+  chunks(array: any, size: number) {
+    const results = [];
+    while (array.length) {
+      results.push(array.splice(0, size));
+    }
+    return results;
+  }
+
   getCategories() {
     this.categoryService.getCategories().subscribe((res) => {
       this.categories = res;
-      this.featuredCategories = res.slice(0, 7);
+      this.featuredCategories = res;
+      this.categoryChunks = this.chunks(
+        this.featuredCategories,
+        this.cardPagination.defaultCount,
+      );
     });
   }
 

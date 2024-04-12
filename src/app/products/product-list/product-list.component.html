@@ -1,4 +1,4 @@
-<div class="p-4 products-container">
+<div class="py-4 products-container">
   <div class="product-filters border mb-4 shadow-lg p-3">
     <app-product-filters
       [selectedCategory]="selectedCatgory"
@@ -8,10 +8,10 @@
     ></app-product-filters>
   </div>
   <div
-    class="product-list d-flex flex-row flex-wrap justify-content-center border shadow-lg p-4"
+    class="product-list d-flex flex-row flex-wrap justify-content-evenly border shadow-lg py-4 px-2"
   >
     <div
-      class="product item mx-2 mb-4"
+      class="product item mb-4"
       *ngFor="
         let product of productList | sortLocal: sortBy?.key : sortBy?.orderBy;
         trackBy: trackByProductId

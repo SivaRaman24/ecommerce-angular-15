@@ -2,6 +2,11 @@ ngb-carousel {
   ::ng-deep {
     .carousel-inner {
       border-radius: 1.5rem;
+      background-color: #fff;
+    }
+
+    .carousel.feature-categories-slide {
+      height: 400px;
     }
 
     .img-wrapper {
@@ -13,6 +18,14 @@ ngb-carousel {
         max-height: 100%;
         object-fit: cover;
       }
+    }
+  }
+}
+
+ngb-carousel.carousel.feature-categories-slide {
+  ::ng-deep {
+    .carousel-inner {
+      border-radius: 0 !important;
     }
   }
 }

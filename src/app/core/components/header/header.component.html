@@ -1,7 +1,7 @@
 <!-- navigation -->
 <header class="shadow-lg">
-  <div class="container-fluid">
-    <div class="row align-items-center pt-2 pb-2">
+  <div class="container">
+    <div class="row align-items-center pt-2 pb-2 mx-0">
       <div class="col-auto text-center text-md-start">
         <a
           [routerLink]="['/']"
@@ -10,7 +10,6 @@
         >
           <i class="bi bi-cart-check-fill"></i> ZenCart
         </a>
-        <!-- <a [routerLink]="['/']"><img src="https://assets-dam.takeda.com/image/upload/v1/legacy-dotcom/globalassets/corporate/takeda_logo" alt="eCommerce Website" class="logo"/></a> -->
       </div>
 
       <div class="col-4">
@@ -48,36 +47,59 @@
             class="nav-link"
             [routerLink]="['/home']"
             [routerLinkActive]="'active'"
-            >Home</a
+            ><div class="text-center link-container">
+              <div class="position-relative d-inline-block">
+                <i class="bi bi-house-door fs-4"></i>
+              </div>
+              <p class="link-text mb-0 d-none d-xl-block small">Home</p>
+            </div></a
           >
           <div class="text-center">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              >Categories</a
-            >
-            <ul class="dropdown-menu">
-              <li
-                *ngFor="let category of categories; trackBy: trackByCategoryId"
-              >
-                <a
-                  class="dropdown-item"
-                  [routerLink]="['/products']"
-                  [queryParams]="{ c: category.name }"
-                  >{{ category.displayName }}</a
+              ><div class="text-center link-container">
+                <div class="position-relative d-inline-block">
+                  <i class="bi bi-grid fs-4"></i>
+                </div>
+                <p
+                  class="link-text mb-0 d-none d-xl-block small dropdown-toggle"
                 >
-              </li>
-            </ul>
+                  Categories
+                </p>
+                <ul class="dropdown-menu">
+                  <li
+                    *ngFor="
+                      let category of categories;
+                      trackBy: trackByCategoryId
+                    "
+                  >
+                    <a
+                      class="dropdown-item"
+                      [routerLink]="['/products']"
+                      [queryParams]="{ c: category.name }"
+                      >{{ category.displayName }}</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </a>
           </div>
           <a
             class="nav-link text-decoration-none"
             [routerLink]="['/products']"
             [routerLinkActive]="'active'"
-            >Products</a
           >
+            <div class="text-center link-container">
+              <div class="position-relative d-inline-block">
+                <i class="bi bi-box fs-4"></i>
+              </div>
+              <p class="link-text mb-0 d-none d-xl-block small">Products</p>
+            </div>
+          </a>
           <div class="ms-6 text-center" *ngIf="isUserAuthenticated">
             <a
               [routerLink]="['/orders']"
